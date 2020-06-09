@@ -1,4 +1,9 @@
- 
+ <html>
+ <head>
+ <%= stylesheet_link_tag 'application', media: 'all' %>
+ </head>
+ <p id="notice">
+ <%=  notice %> </p>
  <p><strong>Title:</strong>
  <%= @book.title %></p>
 
@@ -6,3 +11,5 @@
 <%= @book.body %></p>
 <%= link_to 'Edit',edit_book_path(@book) %> <span>|</span>
 <%= link_to 'Back','/books'%>
+</head>
+</html>

@@ -1,6 +1,5 @@
 
-    
-    <body>
+    <p id="notice"><%=  notice %> </p>
      <h1>Books</h1>
      <table>
      <thead>
@@ -18,8 +17,8 @@
       <td><%= book.title %><td><td><%= book.body %></td>
       <td><%= link_to 'Show',book %></td>
       <td><%= link_to 'Edit',edit_book_path(book) %></td>
-      <td><%= link_to 'Destroy',books_path, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr><br>
+      <td><%= link_to 'Destroy',book_path(book), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
       <% end %>
     </tbody>
     </table>
@@ -32,7 +31,14 @@
 
 <h4>New book</h4>
 <%= form_for(@book) do |f| %>
- 
+  <% if @book.errors.any? %>
+     <h3><%= @book.errors.count %>errors prohibited this book from being saved:</h3>
+  <ul>
+    <% @book.errors.full_messages.each do |message|%>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+  <% end %>
 
     <h5>Title</h5>
     <%= f.text_field :title %>
@@ -43,6 +49,3 @@
     <%= f.submit 'Create Book' %>
  
 <% end %>
-</body>
-
-
